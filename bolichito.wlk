@@ -92,6 +92,46 @@ object luisa{
 
 object juan{
     method leGusta(objeto){
-        return (objeto.color().esFuerte()).negate() || (objeto.peso() >= 1200 && objeto.peso() <= 1800)
+        return objeto.color().esFuerte().negate() || (objeto.peso() >= 1200 && objeto.peso() <= 1800)
     }
 }
+
+object bolichito{
+    var objetoEnVidriera = remera
+    var objetoEnMostrador = pelota
+
+    method cambiarObjetoEnVidriera(nuevoObjeto){
+        objetoEnVidriera = nuevoObjeto
+    }
+
+    method cambiarObjetoEnMostrador(nuevoObjeto){
+        objetoEnMostrador = nuevoObjeto
+    }
+
+
+    method esBrillante() {
+        return objetoEnVidriera.material().esBrillante()
+        && objetoEnMostrador.material().esBrillante()
+    }
+
+    method esMonocromatico(){
+        return objetoEnMostrador.color() == objetoEnVidriera.color()
+    }
+
+    method esEquilibrado(){
+        return objetoEnMostrador.peso() > objetoEnVidriera.peso()
+    }
+
+    method puedeMejorar(){
+        return self.esMonocromatico().negate() || self.esBrillante().negate()
+    }
+
+    method tieneObjetoDeColor(colorAEleccion){
+        return objetoEnMostrador.color() == colorAEleccion || objetoEnVidriera.color() == colorAEleccion
+    }
+
+    method puedeOfrecerleA_EstosObjeto(unaPersona){
+        return unaPersona.leGusta(objetoEnMostrador) || unaPersona.leGusta(objetoEnVidriera)
+    }
+}
+
